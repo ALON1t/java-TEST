@@ -1,0 +1,35 @@
+import java.util.*;
+
+
+public class Solution {
+    /**
+     * max water
+     * @param arr int整型一维数组 the array
+     * @return long长整型
+     */
+    public long maxWater (int[] arr) {
+        // write code here
+        long count = 0;
+        int leftIndex = 0;
+        int rightIndex = arr.length - 1;
+        int min = Math.min(arr[leftIndex],arr[rightIndex]);
+        while(leftIndex < rightIndex) {
+            if(arr[leftIndex] < arr[rightIndex]) {
+                leftIndex++;
+                if(arr[leftIndex] < min) {
+                    count += min - arr[leftIndex];
+                } else {
+                    min = Math.min(arr[rightIndex],arr[leftIndex]);
+                }
+            } else {
+                rightIndex--;
+                if(arr[rightIndex] < min) {
+                    count += min - arr[rightIndex];
+                } else {
+                    min = Math.min(arr[rightIndex],arr[leftIndex]);
+                }
+            }
+        }
+        return count;
+    }
+}
