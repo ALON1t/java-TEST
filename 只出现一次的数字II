@@ -1,0 +1,22 @@
+import java.util.*;
+class Solution {
+    public int singleNumber(int[] nums) {
+        Arrays.sort(nums);
+        int i = 0;
+        for (; i < nums.length - 1;i++) {
+            int count = 1;
+            if (nums[i] == nums[i+1]) {
+                while(nums[i] == nums[i+1]) {
+                    i++;
+                    count++;
+                    if(count == 3) {
+                        break;
+                    }
+                }
+            } else {
+                return nums[i];
+            }
+        }
+        return nums[i];
+    }
+}
